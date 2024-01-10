@@ -15,7 +15,7 @@ export default function MovieSearchForm({ initialValue = "" }) {
       router.push("/");
       return;
     }
-    router.push(`/search?q=${value}`);
+    router.push(`/movie-search?q=${value}`);
   }
 
   return (

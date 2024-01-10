@@ -1,24 +1,34 @@
-import Link from "next/link";
+import MovieList from "@/components/MovieList";
+import SearchForm from "@/components/SearchForm";
+import styles from "@/styles/Home.module.css";
+import Header from "@/components/Header";
+import Container from "@/components/Container";
+import { useEffect, useState } from "react";
+import axios from "@/lib/axios";
 import MovieSearchForm from "@/components/movieSrachForm";
+// import mock from "@/mock.json"; // 이 코드를 지우고 API를 연동해 주세요
 
-export default function movieIndex() {
+export default function Home() {
+  //   const movies = mock.movies; // 이 코드를 지우고 API를 연동해 주세요
+  const [movies, setMovies] = useState([]);
+
+  async function getMovies() {
+    const res = await axios.get("/movies");
+    const nextMovies = res.data.results;
+    setMovies(nextMovies);
+  }
+
+  useEffect(() => {
+    getMovies();
+  }, []);
+
   return (
     <>
-      <h1>watchit</h1>
-      <MovieSearchForm />
-      <ul>
-        <li>
-          <Link href="/movies/1">1번 영화</Link>
-        </li>
-
-        <li>
-          <Link href="/movies/2">2번 영화</Link>
-        </li>
-
-        <li>
-          <Link href="/movies/3">3번 영화</Link>
-        </li>
-      </ul>
+      <Header />
+      <Container page>
+        <MovieSearchForm />
+        <MovieList className={styles.movieList} movies={movies} />
+      </Container>
     </>
   );
 }
