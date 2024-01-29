@@ -24,7 +24,6 @@ export default function Home() {
 
   return (
     <>
-      <Header />
       <Container page>
         <MovieSearchForm />
         <MovieList className={styles.movieList} movies={movies} />

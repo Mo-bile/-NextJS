@@ -14,9 +14,8 @@ export default function Search() {
   const { q } = router.query;
 
   async function getMovies(query) {
-    console.log(query);
-    const res = await axios.get(`/movies/?q=${query}`);
-    const NextMovies = res.data.results;
+    const res = await axios.get(`/movies?q=${query}`);
+    const NextMovies = res.data.results ?? [];
     setMovies(NextMovies);
   }
 

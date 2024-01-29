@@ -33,7 +33,7 @@ export default function Home() {
           <a href="/products/3">세 번째 상품</a>
         </li>
         <li>
-          <Link href="https://codeit.kr">코드잇</Link>
+          <Link href="https://google.com">구글</Link>
         </li>
       </ul>
       <ProductList products={products} />
